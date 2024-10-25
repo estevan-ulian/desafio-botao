@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { IQuestion } from "@/features/scene/types/question-type";
 import { PrismaClientService } from "@/shared/services/prisma";
 import { prisma } from "@/shared/services/prisma/prisma-client";
 import { AppError } from "@/shared/utils/app-error";
-import { IQuestion } from "@/features/scene/types/question-type";
 
 const { prisma: database } = PrismaClientService.create(prisma);
 

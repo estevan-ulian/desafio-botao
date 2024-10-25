@@ -1,27 +1,17 @@
-import { HttpClient } from "@/services/http/http-client";
-
 import { ISceneService } from "../types/scene-service-types";
 import { IQuestion } from "../types/question-type";
-import {
-	ICreateQuestionRequestBody,
-	ICreateQuestionResponse,
-} from "@/shared/types/create-question-requesty-body";
+import { HttpClient } from "@/shared/services/http/http-client";
 
 export class SceneService implements ISceneService {
 	constructor(readonly api: HttpClient) {
 		if (!api) throw new TypeError("Instance API Adapter is required");
 	}
 
-	async create(
-		scenario: ICreateQuestionRequestBody,
-	): Promise<ICreateQuestionResponse> {
-		const httpResponse = await this.api.request<
-			ICreateQuestionRequestBody,
-			ICreateQuestionResponse
-		>({
+	async create(scene: IQuestion): Promise<{ id: string }> {
+		const httpResponse = await this.api.request<IQuestion, { id: string }>({
 			method: "POST",
 			url: "/scene",
-			body: scenario,
+			body: scene,
 		});
 
 		return httpResponse.data;

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { PrismaClientService } from "@/services/prisma";
-import { prisma } from "@/services/prisma/prisma-client";
+import { PrismaClientService } from "@/shared/services/prisma";
+import { prisma } from "@/shared/services/prisma/prisma-client";
 import { AppError } from "@/shared/utils/app-error";
-import { ICreateQuestionRequestBody } from "@/shared/types/create-question-requesty-body";
+import { IQuestion } from "@/features/scene/types/question-type";
 
 const { prisma: database } = PrismaClientService.create(prisma);
 
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
 	try {
-		const body: ICreateQuestionRequestBody = await request.json();
+		const body: IQuestion = await request.json();
 
 		if (!body.data) {
 			return NextResponse.json(AppError.badRequest("Missing 'data'"), {

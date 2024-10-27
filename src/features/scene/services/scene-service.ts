@@ -1,7 +1,6 @@
 import { HttpClient } from "@/shared/services/http/http-client";
 import { IQuestion } from "../types/question-type";
 import { ISceneService } from "../types/scene-service-types";
-import { AppError } from "@/shared/utils/app-error";
 
 export class SceneService implements ISceneService {
 	constructor(readonly api: HttpClient) {

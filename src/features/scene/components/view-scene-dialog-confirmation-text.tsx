@@ -10,6 +10,7 @@ import { useViewSceneDialogConfirmationTextStore } from "../store/view-scene-dia
 import { ViewSceneShareButtons } from "./view-scene-share-buttons";
 import { Button } from "@/shared/components/ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface ViewSceneDialogConfirmationTextProps {
 	text: string;
@@ -17,11 +18,10 @@ interface ViewSceneDialogConfirmationTextProps {
 export function ViewSceneDialogConfirmationText({
 	text,
 }: ViewSceneDialogConfirmationTextProps) {
-	const isOpen = useViewSceneDialogConfirmationTextStore(
-		(store) => store.state.isOpen,
-	);
+	const store = useViewSceneDialogConfirmationTextStore((store) => store);
+	const router = useRouter();
 	return (
-		<Dialog open={isOpen}>
+		<Dialog open={store.state.isOpen}>
 			<DialogContent hideCloseButton className="sm:max-w-screen-md">
 				<DialogHeader>
 					<DialogTitle>Resposta certa!</DialogTitle>
@@ -32,9 +32,28 @@ export function ViewSceneDialogConfirmationText({
 					<div className="h-10" />
 					<ViewSceneShareButtons />
 					<div className="h-5" />
-					<Button asChild variant="default" size="lg">
-						<Link href="/">Crie seu próprio cenário</Link>
-					</Button>
+					<div className="flex items-center w-full gap-4">
+						<Button
+							asChild
+							variant="default"
+							size="lg"
+							className="w-full"
+							onClick={() => {
+								store.actions.closeDialog();
+								router.push("/");
+							}}
+						>
+							<Link href="/">Crie seu próprio cenário</Link>
+						</Button>
+						<Button
+							variant="outline"
+							size="lg"
+							className="w-full"
+							onClick={() => store.actions.closeDialog()}
+						>
+							Reiniciar
+						</Button>
+					</div>
 				</DialogHeader>
 			</DialogContent>
 		</Dialog>

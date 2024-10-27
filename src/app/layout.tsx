@@ -69,6 +69,7 @@ export const metadata: Metadata = {
 	generator: "Next.js",
 	other: {
 		"adopt-website-id": "70a7586a-bcc3-40ce-b8e6-b65fc3d687cf",
+		"google-adsense-account": "ca-pub-4287342873439863",
 	},
 };
 

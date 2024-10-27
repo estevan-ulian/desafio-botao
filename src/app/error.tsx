@@ -24,7 +24,7 @@ export default function Error({
 					Ooops! Algo deu errado.
 				</h2>
 				<p className="text-lg text-muted-foreground">
-					{error.message || "Desculpe-nos pelo incoveniente."}
+					Ocorreu um erro inesperado. Tente novamente mais tarde.
 				</p>
 				<div className="flex gap-2 items-center mt-8">
 					<Button asChild size="lg">

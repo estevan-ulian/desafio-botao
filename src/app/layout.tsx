@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { WithContext, WebSite } from "schema-dts";
 import { GoogleTagManager } from "@next/third-parties/google";
+
 import { poppins as FontSans } from "@/shared/assets/fonts/poppins";
 import { cn } from "@/shared/utils/cn";
+
 import { ThemeProvider } from "next-themes";
+import { WebSite, WithContext } from "schema-dts";
+
 import { Toaster } from "@/shared/components/ui/toaster";
+import { GoogleAdsense } from "@/shared/components/google-adsense";
 import "./globals.css";
+import { GoAdopt } from "@/shared/components/go-adopt";
 
 export const metadata: Metadata = {
 	title: {
@@ -61,6 +66,11 @@ export const metadata: Metadata = {
 		],
 	},
 	robots: "index, follow",
+	generator: "Next.js",
+	other: {
+		"adopt-website-id": "70a7586a-bcc3-40ce-b8e6-b65fc3d687cf",
+		"google-adsense-account": "ca-pub-4287342873439863",
+	},
 };
 
 const jsonLd: WithContext<WebSite> = {
@@ -105,6 +115,12 @@ export default function RootLayout({
 					<Toaster />
 				</ThemeProvider>
 			</body>
+			{isProduction && (
+				<>
+					<GoogleAdsense pId={process.env.NEXT_PUBLIC_ADSENSE_PID!} />
+					<GoAdopt />
+				</>
+			)}
 		</html>
 	);
 }

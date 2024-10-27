@@ -96,20 +96,25 @@ export function CreateSceneForm(props: ReturnType<typeof useCreateSceneForm>) {
 												onValueChange={field.onChange}
 												defaultValue={field.value}
 												{...field}
+												className="flex gap-4"
 											>
-												<FormItem className="flex items-center space-x-3 space-y-0">
+												<FormItem className="flex items-center space-x-1 space-y-0">
 													<FormControl>
 														<RadioGroupItem value="first" />
 													</FormControl>
 													<FormLabel className="font-normal">
-														Primeiro
+														{form.watch("data.answers.first") ||
+															"Primeiro botão"}
 													</FormLabel>
 												</FormItem>
-												<FormItem className="flex items-center space-x-3 space-y-0">
+												<FormItem className="flex items-center space-x-1 space-y-0">
 													<FormControl>
 														<RadioGroupItem value="second" />
 													</FormControl>
-													<FormLabel className="font-normal">Segundo</FormLabel>
+													<FormLabel className="font-normal">
+														{form.watch("data.answers.second") ||
+															"Segundo botão"}
+													</FormLabel>
 												</FormItem>
 											</RadioGroup>
 										</FormControl>
@@ -128,21 +133,19 @@ export function CreateSceneForm(props: ReturnType<typeof useCreateSceneForm>) {
 								<FormItem>
 									<FormLabel>Texto de confirmação</FormLabel>
 									<FormControl>
-										<Textarea {...field} />
+										<Textarea
+											{...field}
+											placeholder="Exemplo: Você aceitou se casar comigo, TE AMO!"
+										/>
 									</FormControl>
 									<FormDescription>
-										Exemplo: Você aceitou se casar comigo, TE AMO!
+										Texto que será exibido após clicar no botão permitido.
 									</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
-						<Button
-							type="submit"
-							disabled={
-								form.formState.isSubmitting || form.formState.isSubmitSuccessful
-							}
-						>
+						<Button type="submit" disabled={form.formState.isSubmitting}>
 							{form.formState.isSubmitting ? (
 								<>
 									Gerando novo cenário...{" "}

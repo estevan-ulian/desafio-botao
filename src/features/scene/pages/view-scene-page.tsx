@@ -7,7 +7,8 @@ import { Typography } from "@/shared/components/ui/typography";
 import { Footer } from "@/shared/components/footer";
 import { ViewSceneButtons } from "../components/view-scene-buttons";
 import { ViewSceneDialogConfirmationText } from "../components/view-scene-dialog-confirmation-text";
-import { AppError } from "@/shared/utils/app-error";
+
+export const revalidate = 60 * 60 * 24 * 7; // 1 week
 
 const httpClient = HttpClient.create(axios, env.BASE_API_URL);
 const sceneService = new SceneService(httpClient);

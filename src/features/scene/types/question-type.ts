@@ -1,6 +1,6 @@
 export interface IQuestion {
 	data: {
-		id: string;
+		id?: string;
 		text: string;
 		confirmationText: string;
 		answers: IAnswer[];
@@ -8,8 +8,8 @@ export interface IQuestion {
 }
 
 export interface IAnswer {
-	id: string;
+	id?: string;
 	text: string;
 	isNotClicable: boolean;
-	questionId: string;
+	questionId?: string;
 }

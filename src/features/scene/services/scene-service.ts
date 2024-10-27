@@ -1,10 +1,11 @@
 import { HttpClient } from "@/shared/services/http/http-client";
 import { IQuestion } from "../types/question-type";
 import { ISceneService } from "../types/scene-service-types";
+import { AppError } from "@/shared/utils/app-error";
 
 export class SceneService implements ISceneService {
 	constructor(readonly api: HttpClient) {
-		if (!api) throw new TypeError("Instance API Adapter is required");
+		if (!api) throw new TypeError("Instance of API Adapter is required");
 	}
 
 	async create(scene: IQuestion): Promise<{ id: string }> {
@@ -20,7 +21,7 @@ export class SceneService implements ISceneService {
 	async findOne(id: string): Promise<IQuestion> {
 		const httpResponse = await this.api.request<null, IQuestion>({
 			method: "GET",
-			url: `/scene?${id}`,
+			url: `/scene?id=${id}`,
 		});
 
 		return httpResponse.data;

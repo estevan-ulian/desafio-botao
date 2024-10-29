@@ -4,6 +4,8 @@ import { IQuestion } from "@/features/scene/types/question-type";
 import { AppError } from "@/shared/utils/app-error";
 import { prisma } from "@/shared/services/prisma-client";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
 	try {
 		const id = request.nextUrl.searchParams.get("id");

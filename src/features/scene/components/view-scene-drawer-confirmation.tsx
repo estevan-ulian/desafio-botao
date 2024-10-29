@@ -11,6 +11,7 @@ import {
 } from "@/shared/components/ui/drawer";
 import Link from "next/link";
 import { ViewSceneShareButtons } from "./view-scene-share-buttons";
+import { Typography } from "@/shared/components/ui/typography";
 
 interface ViewSceneDrawerConfirmationProps {
 	text: string;
@@ -27,13 +28,15 @@ export function ViewSceneDrawerConfirmation({
 				<Button size="lg">{text}</Button>
 			</DrawerTrigger>
 			<DrawerContent>
-				<DrawerHeader>
+				<DrawerHeader className="pt-20">
 					<DrawerTitle>Resposta certa!</DrawerTitle>
-					<DrawerDescription className="p-4 border mt-2 rounded-sm">
-						{confirmationText}
+					<DrawerDescription asChild className="p-4 border mt-2 rounded-sm">
+						<Typography variant="largeText" weight="medium">
+							{confirmationText}
+						</Typography>
 					</DrawerDescription>
 				</DrawerHeader>
-				<DrawerFooter className="gap-5">
+				<DrawerFooter className="gap-5 pb-32">
 					<ViewSceneShareButtons />
 					<div className="flex flex-row gap-4 md:gap-10">
 						<Button asChild className="w-full">

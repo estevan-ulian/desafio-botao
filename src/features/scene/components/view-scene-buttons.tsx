@@ -1,5 +1,5 @@
 "use client";
-import { IAnswer, IQuestion } from "../types/question-type";
+import { IQuestion } from "../types/question-type";
 import { MovingButton } from "./moving-button";
 import { ViewSceneDrawerConfirmation } from "./view-scene-drawer-confirmation";
 
@@ -9,7 +9,7 @@ interface ViewSceneButtonsProps {
 
 export function ViewSceneButtons({ scene }: ViewSceneButtonsProps) {
 	return (
-		<div className="w-full flex items-center justify-center gap-5 px-4">
+		<div className="w-full flex flex-col sm:flex-row items-stretch justify-center gap-5 px-4">
 			{scene.answers.map((answer) => {
 				if (!answer.isNotClicable) {
 					return (

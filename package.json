@@ -3,10 +3,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
+		"postinstall": "prisma generate",
+		"dev": "npm run postinstall && next dev",
+		"build": "npm run postinstall && next build",
 		"start": "next start",
-		"prisma:migrate": "npx prisma migrate dev --name init",
 		"biome:format": "npx @biomejs/biome format --write",
 		"biome:lint": "npx @biomejs/biome lint --write",
 		"biome:check": "npx @biomejs/biome check --write"

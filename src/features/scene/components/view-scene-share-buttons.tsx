@@ -46,9 +46,11 @@ export function ViewSceneShareButtons({
 	return (
 		<Card className="w-full">
 			<CardContent className="p-6">
-				<Typography variant="h5">Compartilhe este cenário</Typography>
+				<Typography variant="h5" as="h3" className="text-center sm:text-left">
+					Compartilhe este cenário
+				</Typography>
 				<div className="flex flex-col gap-2 sm:flex-row my-4">
-					<div className="flex space-x-2">
+					<div className="flex justify-center space-x-2">
 						<Button
 							onClick={shareOnX}
 							variant="outline"

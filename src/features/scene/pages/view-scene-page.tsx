@@ -6,7 +6,6 @@ import { env } from "@/shared/utils/env";
 import { Typography } from "@/shared/components/ui/typography";
 import { Footer } from "@/shared/components/footer";
 import { ViewSceneButtons } from "../components/view-scene-buttons";
-import { ViewSceneDialogConfirmationText } from "../components/view-scene-dialog-confirmation-text";
 
 export const revalidate = 60 * 60 * 24 * 7; // 1 week
 
@@ -26,10 +25,7 @@ export async function ViewScenePage({ sceneId }: { sceneId: string }) {
 								{scene.data.text}
 							</Typography>
 
-							<ViewSceneButtons answers={scene.data.answers} />
-							<ViewSceneDialogConfirmationText
-								text={scene.data.confirmationText}
-							/>
+							<ViewSceneButtons scene={scene.data} />
 						</div>
 					</div>
 				</section>

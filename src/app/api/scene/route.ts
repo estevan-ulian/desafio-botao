@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { IQuestion } from "@/features/scene/types/question-type";
-import { PrismaClientService } from "@/shared/services/prisma";
 import { AppError } from "@/shared/utils/app-error";
-import prisma from "@/shared/services/prisma/prisma-client";
-
-const { prisma: database } = PrismaClientService.create(prisma);
+import { prisma } from "@/shared/services/prisma-client";
 
 export async function GET(request: NextRequest) {
 	try {
@@ -17,7 +14,7 @@ export async function GET(request: NextRequest) {
 			});
 		}
 
-		const scene = await database.question.findUnique({
+		const scene = await prisma.question.findUnique({
 			where: {
 				id,
 			},
@@ -85,7 +82,7 @@ export async function POST(request: NextRequest) {
 			);
 		}
 
-		const question = await database.question.create({
+		const question = await prisma.question.create({
 			data: {
 				text: body.data.text,
 				confirmationText: body.data.confirmationText,

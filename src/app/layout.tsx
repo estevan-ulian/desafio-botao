@@ -10,7 +10,6 @@ import { WebSite, WithContext } from "schema-dts";
 import { Toaster } from "@/shared/components/ui/toaster";
 import { GoogleAdsense } from "@/shared/components/google-adsense";
 import "./globals.css";
-import { GoAdopt } from "@/shared/components/go-adopt";
 
 export const metadata: Metadata = {
 	title: {
@@ -103,7 +102,10 @@ export default function RootLayout({
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
 				{isProduction && (
-					<GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+					<>
+						<GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+						<GoogleAdsense pId={process.env.NEXT_PUBLIC_ADSENSE_PID!} />
+					</>
 				)}
 				<ThemeProvider
 					attribute="class"
@@ -115,12 +117,6 @@ export default function RootLayout({
 					<Toaster />
 				</ThemeProvider>
 			</body>
-			{isProduction && (
-				<>
-					<GoogleAdsense pId={process.env.NEXT_PUBLIC_ADSENSE_PID!} />
-					<GoAdopt />
-				</>
-			)}
 		</html>
 	);
 }

@@ -1,35 +1,23 @@
 "use client";
-import { Button } from "@/shared/components/ui/button";
-import { IAnswer } from "../types/question-type";
-import { useViewSceneDialogConfirmationTextStore } from "../store/view-scene-dialog-confirmation-text-store";
+import { IAnswer, IQuestion } from "../types/question-type";
 import { MovingButton } from "./moving-button";
+import { ViewSceneDrawerConfirmation } from "./view-scene-drawer-confirmation";
 
 interface ViewSceneButtonsProps {
-	answers: IAnswer[];
+	scene: IQuestion["data"];
 }
 
-export function ViewSceneButtons({ answers }: ViewSceneButtonsProps) {
-	const actions = useViewSceneDialogConfirmationTextStore(
-		(store) => store.actions,
-	);
+export function ViewSceneButtons({ scene }: ViewSceneButtonsProps) {
 	return (
-		<div className="w-full flex items-center justify-center gap-10">
-			{answers.map((answer) => {
+		<div className="w-full flex items-center justify-center gap-5 px-4">
+			{scene.answers.map((answer) => {
 				if (!answer.isNotClicable) {
 					return (
-						<Button
+						<ViewSceneDrawerConfirmation
 							key={answer.id}
-							className="min-w-52"
-							size="lg"
-							onClick={() => {
-								if (!answer.isNotClicable) {
-									actions.openDialog();
-								}
-							}}
-							variant={answer.isNotClicable ? "outline" : "default"}
-						>
-							{answer.text}
-						</Button>
+							text={answer.text}
+							confirmationText={scene.confirmationText}
+						/>
 					);
 				} else {
 					return <MovingButton key={answer.id} label={answer.text} />;

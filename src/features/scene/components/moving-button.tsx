@@ -17,10 +17,6 @@ export function MovingButton({ label }: { label: string }) {
 		});
 	}, [activated]);
 
-	const handleInteraction = useCallback(() => {
-		moveButton();
-	}, [moveButton]);
-
 	return (
 		<Button
 			style={{
@@ -30,8 +26,8 @@ export function MovingButton({ label }: { label: string }) {
 				zIndex: activated ? "10" : undefined,
 			}}
 			className="transition-all duration-300 ease-in-out cursor-default"
-			onTouchStart={handleInteraction}
-			onMouseOver={handleInteraction}
+			onTouchStart={moveButton}
+			onMouseOver={moveButton}
 			variant="outline"
 			size="lg"
 		>

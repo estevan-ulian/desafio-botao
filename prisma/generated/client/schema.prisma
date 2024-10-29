@@ -10,16 +10,18 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DATABASE_URL")
+  provider     = "postgresql"
+  relationMode = "prisma"
+  url          = env("DATABASE_URL")
+  directUrl    = env("DIRECT_URL")
 }
 
 model Question {
   id               String   @id @default(uuid())
   text             String
   answers          Answer[]
-  confirmationText String
+  confirmationText String   @map("confirmation_text")
+  createdAt        DateTime @default(now()) @map("created_at")
 
   @@map("questions")
 }
@@ -27,8 +29,8 @@ model Question {
 model Answer {
   id            String   @id @default(uuid())
   text          String
-  isNotClicable Boolean
-  questionId    String
+  isNotClicable Boolean  @map("is_not_clicable")
+  questionId    String   @map("question_id")
   question      Question @relation(fields: [questionId], references: [id])
 
   @@map("answers")

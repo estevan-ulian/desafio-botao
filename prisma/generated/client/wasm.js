@@ -125,7 +125,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.QuestionScalarFieldEnum = {
   id: 'id',
   text: 'text',
-  confirmationText: 'confirmationText'
+  confirmationText: 'confirmationText',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.AnswerScalarFieldEnum = {

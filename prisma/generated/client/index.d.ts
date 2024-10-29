@@ -973,18 +973,21 @@ export namespace Prisma {
     id: string | null
     text: string | null
     confirmationText: string | null
+    createdAt: Date | null
   }
 
   export type QuestionMaxAggregateOutputType = {
     id: string | null
     text: string | null
     confirmationText: string | null
+    createdAt: Date | null
   }
 
   export type QuestionCountAggregateOutputType = {
     id: number
     text: number
     confirmationText: number
+    createdAt: number
     _all: number
   }
 
@@ -993,18 +996,21 @@ export namespace Prisma {
     id?: true
     text?: true
     confirmationText?: true
+    createdAt?: true
   }
 
   export type QuestionMaxAggregateInputType = {
     id?: true
     text?: true
     confirmationText?: true
+    createdAt?: true
   }
 
   export type QuestionCountAggregateInputType = {
     id?: true
     text?: true
     confirmationText?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -1084,6 +1090,7 @@ export namespace Prisma {
     id: string
     text: string
     confirmationText: string
+    createdAt: Date
     _count: QuestionCountAggregateOutputType | null
     _min: QuestionMinAggregateOutputType | null
     _max: QuestionMaxAggregateOutputType | null
@@ -1107,6 +1114,7 @@ export namespace Prisma {
     id?: boolean
     text?: boolean
     confirmationText?: boolean
+    createdAt?: boolean
     answers?: boolean | Question$answersArgs<ExtArgs>
     _count?: boolean | QuestionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["question"]>
@@ -1115,12 +1123,14 @@ export namespace Prisma {
     id?: boolean
     text?: boolean
     confirmationText?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["question"]>
 
   export type QuestionSelectScalar = {
     id?: boolean
     text?: boolean
     confirmationText?: boolean
+    createdAt?: boolean
   }
 
   export type QuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1138,6 +1148,7 @@ export namespace Prisma {
       id: string
       text: string
       confirmationText: string
+      createdAt: Date
     }, ExtArgs["result"]["question"]>
     composites: {}
   }
@@ -1535,6 +1546,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Question", 'String'>
     readonly text: FieldRef<"Question", 'String'>
     readonly confirmationText: FieldRef<"Question", 'String'>
+    readonly createdAt: FieldRef<"Question", 'DateTime'>
   }
     
 
@@ -2821,7 +2833,8 @@ export namespace Prisma {
   export const QuestionScalarFieldEnum: {
     id: 'id',
     text: 'text',
-    confirmationText: 'confirmationText'
+    confirmationText: 'confirmationText',
+    createdAt: 'createdAt'
   };
 
   export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
@@ -2873,6 +2886,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -2903,6 +2930,7 @@ export namespace Prisma {
     id?: StringFilter<"Question"> | string
     text?: StringFilter<"Question"> | string
     confirmationText?: StringFilter<"Question"> | string
+    createdAt?: DateTimeFilter<"Question"> | Date | string
     answers?: AnswerListRelationFilter
   }
 
@@ -2910,6 +2938,7 @@ export namespace Prisma {
     id?: SortOrder
     text?: SortOrder
     confirmationText?: SortOrder
+    createdAt?: SortOrder
     answers?: AnswerOrderByRelationAggregateInput
   }
 
@@ -2920,6 +2949,7 @@ export namespace Prisma {
     NOT?: QuestionWhereInput | QuestionWhereInput[]
     text?: StringFilter<"Question"> | string
     confirmationText?: StringFilter<"Question"> | string
+    createdAt?: DateTimeFilter<"Question"> | Date | string
     answers?: AnswerListRelationFilter
   }, "id">
 
@@ -2927,6 +2957,7 @@ export namespace Prisma {
     id?: SortOrder
     text?: SortOrder
     confirmationText?: SortOrder
+    createdAt?: SortOrder
     _count?: QuestionCountOrderByAggregateInput
     _max?: QuestionMaxOrderByAggregateInput
     _min?: QuestionMinOrderByAggregateInput
@@ -2939,6 +2970,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Question"> | string
     text?: StringWithAggregatesFilter<"Question"> | string
     confirmationText?: StringWithAggregatesFilter<"Question"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Question"> | Date | string
   }
 
   export type AnswerWhereInput = {
@@ -2995,6 +3027,7 @@ export namespace Prisma {
     id?: string
     text: string
     confirmationText: string
+    createdAt?: Date | string
     answers?: AnswerCreateNestedManyWithoutQuestionInput
   }
 
@@ -3002,6 +3035,7 @@ export namespace Prisma {
     id?: string
     text: string
     confirmationText: string
+    createdAt?: Date | string
     answers?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
   }
 
@@ -3009,6 +3043,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     confirmationText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     answers?: AnswerUpdateManyWithoutQuestionNestedInput
   }
 
@@ -3016,6 +3051,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     confirmationText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     answers?: AnswerUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
@@ -3023,18 +3059,21 @@ export namespace Prisma {
     id?: string
     text: string
     confirmationText: string
+    createdAt?: Date | string
   }
 
   export type QuestionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     confirmationText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuestionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     confirmationText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AnswerCreateInput = {
@@ -3100,6 +3139,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type AnswerListRelationFilter = {
     every?: AnswerWhereInput
     some?: AnswerWhereInput
@@ -3114,18 +3164,21 @@ export namespace Prisma {
     id?: SortOrder
     text?: SortOrder
     confirmationText?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type QuestionMaxOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
     confirmationText?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type QuestionMinOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
     confirmationText?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3144,6 +3197,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -3201,6 +3268,10 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type AnswerUpdateManyWithoutQuestionNestedInput = {
@@ -3263,6 +3334,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3289,6 +3371,20 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -3356,12 +3452,14 @@ export namespace Prisma {
     id?: string
     text: string
     confirmationText: string
+    createdAt?: Date | string
   }
 
   export type QuestionUncheckedCreateWithoutAnswersInput = {
     id?: string
     text: string
     confirmationText: string
+    createdAt?: Date | string
   }
 
   export type QuestionCreateOrConnectWithoutAnswersInput = {
@@ -3384,12 +3482,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     confirmationText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuestionUncheckedUpdateWithoutAnswersInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     confirmationText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AnswerCreateManyQuestionInput = {

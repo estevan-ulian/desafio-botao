@@ -1,15 +1,28 @@
-export interface IQuestion {
-	data: {
-		id?: string;
-		text: string;
-		confirmationText: string;
-		answers: IAnswer[];
-	};
-}
+import { Prisma } from "@prisma/client";
 
-export interface IAnswer {
+interface IAnswer {
 	id?: string;
 	text: string;
-	isNotClicable: boolean;
-	questionId?: string;
+	isNotClickable: boolean;
 }
+
+interface QuestionData {
+	id?: string;
+	text: string;
+	confirmationText: string;
+	answers: IAnswer[];
+}
+
+export interface IQuestionCreateBody {
+	data: QuestionData;
+}
+
+const questionWithAnswers = Prisma.validator<Prisma.QuestionDefaultArgs>()({
+	include: {
+		answers: true,
+	},
+});
+
+export type IQuestionModel = Prisma.QuestionGetPayload<
+	typeof questionWithAnswers
+>;

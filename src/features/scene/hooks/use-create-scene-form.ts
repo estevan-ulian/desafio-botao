@@ -16,12 +16,12 @@ export function useCreateSceneForm(
 	const form = useForm<CreateSceneFormType>({
 		defaultValues: {
 			data: {
-				text: "Casa ou apartamento?",
-				confirmationText: "Eu já sabia seu safado",
+				text: "",
+				confirmationText: "",
 				answers: {
-					first: "Casa",
-					second: "Apartamento",
-					isNotClickable: "second",
+					first: "",
+					second: "",
+					isNotClickable: undefined,
 				},
 			},
 		},

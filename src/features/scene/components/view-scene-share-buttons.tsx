@@ -4,9 +4,7 @@ import { useState } from "react";
 import { Facebook, Link, Check } from "lucide-react";
 import { Card, CardContent } from "@/shared/components/ui/card";
 import { Button } from "@/shared/components/ui/button";
-import { Input } from "@/shared/components/ui/input";
 import { Typography } from "@/shared/components/ui/typography";
-import { Label } from "@/shared/components/ui/label";
 
 export function ViewSceneShareButtons({
 	title = "Te desafio a responder essa pergunta!",

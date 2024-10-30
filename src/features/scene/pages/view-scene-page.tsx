@@ -3,8 +3,6 @@ import { Footer } from "@/shared/components/footer";
 import { ViewSceneButtons } from "../components/view-scene-buttons";
 import { viewSceneAction } from "../server/view-scene-action";
 
-export const revalidate = 60 * 60 * 24 * 2; // 2 days
-
 export async function ViewScenePage({ sceneId }: { sceneId: string }) {
 	const scene = await viewSceneAction(sceneId);
 

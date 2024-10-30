@@ -1,37 +1,29 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
 }
 
 datasource db {
-  provider     = "postgresql"
-  relationMode = "prisma"
-  url          = env("DATABASE_URL")
-  directUrl    = env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Question {
   id               String   @id @default(uuid())
   text             String
-  answers          Answer[]
   confirmationText String   @map("confirmation_text")
   createdAt        DateTime @default(now()) @map("created_at")
+  answers          Answer[]
 
   @@map("questions")
 }
 
 model Answer {
-  id            String   @id @default(uuid())
-  text          String
-  isNotClicable Boolean  @map("is_not_clicable")
-  questionId    String   @map("question_id")
-  question      Question @relation(fields: [questionId], references: [id])
+  id             String   @id @default(uuid())
+  text           String
+  questionId     String   @map("question_id")
+  isNotClickable Boolean  @map("is_not_clickable")
+  question       Question @relation(fields: [questionId], references: [id])
 
   @@map("answers")
 }

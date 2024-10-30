@@ -1,22 +1,22 @@
 "use client";
-import { IQuestion } from "../types/question-type";
+import { IQuestionCreateBody } from "../types/question-type";
 import { MovingButton } from "./moving-button";
 import { ViewSceneDrawerConfirmation } from "./view-scene-drawer-confirmation";
 
 interface ViewSceneButtonsProps {
-	scene: IQuestion["data"];
+	scene: IQuestionCreateBody["data"];
 }
 
 export function ViewSceneButtons({ scene }: ViewSceneButtonsProps) {
 	return (
 		<div className="w-full flex flex-col sm:flex-row items-stretch justify-center gap-5 px-4">
-			{scene.answers.map((answer) => {
-				if (!answer.isNotClicable) {
+			{scene.answers?.map((answer) => {
+				if (!answer.isNotClickable) {
 					return (
 						<ViewSceneDrawerConfirmation
 							key={answer.id}
 							text={answer.text}
-							confirmationText={scene.confirmationText}
+							confirmationText={scene.confirmationText ?? ""}
 						/>
 					);
 				} else {

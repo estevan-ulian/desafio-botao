@@ -1,12 +1,9 @@
 import { PartyPopper } from "lucide-react";
-import {
-	Alert,
-	AlertDescription,
-	AlertTitle,
-} from "@/shared/components/ui/alert";
+import { Alert, AlertDescription } from "@/shared/components/ui/alert";
 import { Typography } from "@/shared/components/ui/typography";
 import { Footer } from "@/shared/components/footer";
 import { FormView } from "../components/create-scene-form-view";
+import { createSceneAction } from "../server/create-scene-action";
 
 export function CreateScenePage() {
 	return (
@@ -32,7 +29,7 @@ export function CreateScenePage() {
 								</ol>
 							</AlertDescription>
 						</Alert>
-						<FormView />
+						<FormView serverAction={createSceneAction} />
 					</div>
 				</section>
 			</main>

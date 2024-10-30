@@ -1,19 +1,16 @@
-import axios from "axios";
-import { HttpClient } from "@/shared/services/http/http-client";
-import { SceneService } from "../services/scene-service";
-import { env } from "@/shared/utils/env";
-
 import { Typography } from "@/shared/components/ui/typography";
 import { Footer } from "@/shared/components/footer";
 import { ViewSceneButtons } from "../components/view-scene-buttons";
+import { viewSceneAction } from "../server/view-scene-action";
 
-export const revalidate = 60 * 60 * 24 * 7; // 1 week
-
-const httpClient = HttpClient.create(axios, env.BASE_API_URL);
-const sceneService = new SceneService(httpClient);
+export const revalidate = 60 * 60 * 24 * 2; // 2 days
 
 export async function ViewScenePage({ sceneId }: { sceneId: string }) {
-	const scene = await sceneService.findOne(sceneId);
+	const scene = await viewSceneAction(sceneId);
+
+	if (!scene.data) {
+		throw new Error(scene.error?.message);
+	}
 
 	return (
 		<>

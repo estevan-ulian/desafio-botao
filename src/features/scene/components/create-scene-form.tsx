@@ -145,7 +145,12 @@ export function CreateSceneForm(props: ReturnType<typeof useCreateSceneForm>) {
 								</FormItem>
 							)}
 						/>
-						<Button type="submit" disabled={form.formState.isSubmitting}>
+						<Button
+							type="submit"
+							disabled={
+								form.formState.isSubmitting || form.formState.isSubmitSuccessful
+							}
+						>
 							{form.formState.isSubmitting ? (
 								<>
 									Gerando novo cenário...{" "}

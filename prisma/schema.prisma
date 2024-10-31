@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Question {
-  id               String   @id @default(uuid())
+  id               String   @id @unique @default(uuid())
   text             String
   confirmationText String   @map("confirmation_text")
   createdAt        DateTime @default(now()) @map("created_at")
@@ -19,7 +19,7 @@ model Question {
 }
 
 model Answer {
-  id             String   @id @default(uuid())
+  id             String   @id @unique @default(uuid())
   text           String
   questionId     String   @map("question_id")
   isNotClickable Boolean  @map("is_not_clickable")

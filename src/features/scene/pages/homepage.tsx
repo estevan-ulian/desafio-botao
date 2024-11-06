@@ -28,7 +28,7 @@ export function Homepage() {
 								apenas um botão pode ser clicado. Divirta-se com seus amigos!
 							</Typography>
 							<div className="flex flex-col md:flex-row gap-4">
-								<Button
+								{/* <Button
 									variant="secondary"
 									className="w-full"
 									size="lg"
@@ -37,10 +37,10 @@ export function Homepage() {
 									<Link href="/cenario/criar">
 										Confira os cenários mais recentes
 									</Link>
-								</Button>
+								</Button> */}
 								<Button
 									variant="outline"
-									className="w-full bg-transparent text-background dark:text-foreground dark:border-foreground dark:hover:bg-foreground dark:hover:text-background"
+									className="w-auto bg-transparent text-background dark:text-foreground dark:border-foreground dark:hover:bg-foreground dark:hover:text-background"
 									size="lg"
 									asChild
 								>

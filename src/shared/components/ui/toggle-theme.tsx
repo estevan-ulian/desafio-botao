@@ -17,11 +17,7 @@ export function ToggleTheme() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button
-					variant="ghost"
-					size="default"
-					className="p-0 px-2 text-muted-foreground"
-				>
+				<Button variant="ghost" className="p-0 h-auto text-muted-foreground">
 					<Sun className="h-[1.2rem] w-[1.2rem] dark:absolute dark:invisbile dark:opacity-0 dark:size-0" />
 					<Moon className="h-[1.2rem] w-[1.2rem] absolute invisible opacity-0 dark:static dark:visible dark:opacity-100" />
 					Alternar Tema

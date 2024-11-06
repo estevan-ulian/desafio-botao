@@ -13,7 +13,8 @@ export function Homepage() {
 					<div className="max-w-screen-xl mx-auto w-full px-4 flex flex-col gap-10 md:flex-row items-center justify-center">
 						<div className="w-full md:max-w-[50%]">
 							<Typography
-								variant="h1"
+								variant="h2"
+								as="h1"
 								className="text-background mb-2 dark:text-foreground"
 							>
 								Desafio do Botão
@@ -61,7 +62,7 @@ export function Homepage() {
 				</section>
 				<section className="w-full py-16 bg-secondary">
 					<div className="max-w-screen-xl mx-auto w-full px-4">
-						<Typography variant="h3" as="h2" className="text-center">
+						<Typography variant="h3" as="h2" className="md:text-center">
 							Como funciona o Desafio do Botão
 						</Typography>
 
@@ -132,20 +133,18 @@ export function Homepage() {
 				<section className="w-full py-16">
 					<div className="max-w-screen-md mx-auto w-full px-4">
 						<div className="flex flex-col items-center justify-center gap-5">
-							<Typography variant="h3" as="h2" className="text-center">
+							<Typography variant="h3" as="h2" className="md:text-center">
 								Pronto para Criar Seu Próprio Desafio?
 							</Typography>
-							<Typography variant="p" className="text-center !m-0">
+							<Typography variant="p" className="md:text-center !m-0">
 								Liberte sua imaginação e crie cenários hilários para desafiar os
 								amigos! Agora é a sua vez de definir os desafios, enganar e
 								surpreender quem tentar acertar. Personalize, divirta-se e
 								compartilhe suas criações!
 							</Typography>
-							{/* TODO: Fix width button in mobile */}
-							<Button asChild size="lg">
-								<Link href="/cenario/criar">
-									Crie um cenário agora e compartilhe com seus amigos
-								</Link>
+
+							<Button asChild size="lg" className="w-full md:w-auto">
+								<Link href="/cenario/criar">Crie um cenário</Link>
 							</Button>
 						</div>
 					</div>

@@ -141,6 +141,7 @@ export function Homepage() {
 								surpreender quem tentar acertar. Personalize, divirta-se e
 								compartilhe suas criações!
 							</Typography>
+							{/* TODO: Fix width button in mobile */}
 							<Button asChild size="lg">
 								<Link href="/cenario/criar">
 									Crie um cenário agora e compartilhe com seus amigos

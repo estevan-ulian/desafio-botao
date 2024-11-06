@@ -1,5 +1,6 @@
 import {
 	ICreateSceneActionResponse,
+	IGetLastTenScenesServiceResponse,
 	IGetSceneServiceResponse,
 } from "../types/scene-actions-type";
 import { IQuestionCreateBody } from "../types/question-type";
@@ -10,6 +11,7 @@ export interface ISceneService {
 		scenario: IQuestionCreateBody,
 	) => Promise<ICreateSceneActionResponse>;
 	findOne: (id: string) => Promise<IGetSceneServiceResponse>;
+	findTheLastTen: () => Promise<IGetLastTenScenesServiceResponse>;
 }
 
 export function sceneService(api: PrismaClient): ISceneService {
@@ -95,6 +97,38 @@ export function sceneService(api: PrismaClient): ISceneService {
 					createdAt: question.createdAt,
 					answers: question.answers,
 				},
+				error: null,
+			};
+		},
+
+		findTheLastTen: async (): Promise<IGetLastTenScenesServiceResponse> => {
+			const questions = await api.question.findMany({
+				take: 10,
+				orderBy: {
+					createdAt: "desc",
+				},
+				include: {
+					answers: true,
+				},
+			});
+
+			if (!questions.length) {
+				return {
+					data: null,
+					error: {
+						message: "Nenhum cenário encontrado.",
+					},
+				};
+			}
+
+			return {
+				data: questions.map((question) => ({
+					id: question.id,
+					text: question.text,
+					confirmationText: question.confirmationText,
+					createdAt: question.createdAt,
+					answers: question.answers,
+				})),
 				error: null,
 			};
 		},

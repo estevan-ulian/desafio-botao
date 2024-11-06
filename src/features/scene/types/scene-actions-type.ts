@@ -12,3 +12,8 @@ export type IGetSceneServiceResponse = {
 	data: IQuestionModel | null;
 	error: IError | null;
 };
+
+export type IGetLastTenScenesServiceResponse = {
+	data: IQuestionModel[] | null;
+	error: IError | null;
+};

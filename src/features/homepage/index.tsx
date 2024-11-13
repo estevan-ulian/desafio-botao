@@ -1,9 +1,9 @@
+import Link from "next/link";
 import { Footer } from "@/shared/components/footer";
 import { Button } from "@/shared/components/ui/button";
 import { Typography } from "@/shared/components/ui/typography";
-import Image from "next/image";
-import Link from "next/link";
-import demoGif from "@/shared/assets/images/demo.gif";
+import demoGifDesktop from "@/shared/assets/images/demo_desktop.gif";
+import demoGifMobile from "@/shared/assets/images/demo_mobile.gif";
 
 export function Homepage() {
 	return (
@@ -49,14 +49,26 @@ export function Homepage() {
 							</div>
 						</div>
 						<div className="w-full md:max-w-[50%]">
-							<Image
-								src={demoGif}
-								width={374}
-								height={358}
-								className="w-full md:max-w-[374px] mx-auto rounded-lg"
-								alt="Demonstração"
-								priority
-							/>
+							<picture>
+								<source
+									srcSet={demoGifDesktop.src}
+									media="(min-width: 768px)"
+									width={376}
+									height={358}
+								/>
+								<source
+									srcSet={demoGifMobile.src}
+									media="(max-width: 767px)"
+									width={474}
+									height={678}
+								/>
+								<img
+									src={demoGifDesktop.src}
+									alt="Demonstração do jogo Desafio do Botão"
+									className="w-full md:max-w-[374px] mx-auto rounded-lg"
+									loading="eager"
+								/>
+							</picture>
 						</div>
 					</div>
 				</section>

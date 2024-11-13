@@ -1,5 +1,5 @@
-import { ViewScenePage } from "@/features/scene/pages/view-scene-page";
-import { viewSceneAction } from "@/features/scene/server/view-scene-action";
+import { viewScenarioAction } from "@/features/scenario/actions/view-scenario-action";
+import { ViewScenarioPage } from "@/features/scenario/pages/view-scenario";
 
 interface IPageProps {
 	params: { id: string };
@@ -9,11 +9,9 @@ export const dynamic = "force-dynamic";
 
 export default async function Page({ params }: IPageProps) {
 	const { id } = params;
-	const scene = await viewSceneAction(id);
+	const scenario = await viewScenarioAction(id);
 
-	if (!scene.data) {
-		throw new Error(scene.error?.message);
-	}
+	if (!scenario.data) throw new Error(scenario.error?.message);
 
-	return <ViewScenePage scene={scene} />;
+	return <ViewScenarioPage scenario={scenario.data} />;
 }

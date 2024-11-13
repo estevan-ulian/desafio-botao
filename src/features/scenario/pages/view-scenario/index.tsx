@@ -1,13 +1,13 @@
 import { Typography } from "@/shared/components/ui/typography";
 import { Footer } from "@/shared/components/footer";
-import { ViewSceneButtons } from "../components/view-scene-buttons";
-import { IGetSceneServiceResponse } from "../types/scene-actions-type";
+import { IGetScenarioServiceResponse } from "../../types/scenario-actions-type";
+import { Buttons } from "./components/buttons";
 
-interface IViewScenePageProps {
-	scene: IGetSceneServiceResponse;
+interface IViewScenarioPageProps {
+	scenario: IGetScenarioServiceResponse["data"];
 }
 
-export function ViewScenePage({ scene }: IViewScenePageProps) {
+export function ViewScenarioPage({ scenario }: IViewScenarioPageProps) {
 	return (
 		<>
 			<main className="flex-grow flex flex-col justify-center relative">
@@ -15,10 +15,10 @@ export function ViewScenePage({ scene }: IViewScenePageProps) {
 					<div className="max-w-screen-md mx-auto w-full px-4 py-10">
 						<div className="w-full flex flex-col gap-10">
 							<Typography variant="h1" className="text-center">
-								{scene.data!.text}
+								{scenario!.question}
 							</Typography>
 
-							<ViewSceneButtons scene={scene.data!} />
+							<Buttons scenario={scenario} />
 						</div>
 					</div>
 				</section>

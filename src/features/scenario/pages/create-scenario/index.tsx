@@ -1,13 +1,12 @@
+import Link from "next/link";
 import { ArrowLeft, PartyPopper } from "lucide-react";
 import { Alert, AlertDescription } from "@/shared/components/ui/alert";
 import { Typography } from "@/shared/components/ui/typography";
 import { Footer } from "@/shared/components/footer";
-import { FormView } from "../components/create-scene-form-view";
-import { createSceneAction } from "../server/create-scene-action";
-import Link from "next/link";
 import { Button } from "@/shared/components/ui/button";
+import { CreateScenarioStepperForm } from "./components/create-scenario-stepper-form";
 
-export function CreateScenePage() {
+export async function CreateScenarioPage() {
 	return (
 		<>
 			<main className="flex-grow flex flex-col">
@@ -36,7 +35,7 @@ export function CreateScenePage() {
 								</ol>
 							</AlertDescription>
 						</Alert>
-						<FormView serverAction={createSceneAction} />
+						<CreateScenarioStepperForm />
 					</div>
 				</section>
 			</main>

@@ -1,5 +1,5 @@
-import { CreateScenePage } from "@/features/scene/pages/create-scene-page";
+import { CreateScenarioPage } from "@/features/scenario/pages/create-scenario";
 
 export default function Page() {
-	return <CreateScenePage />;
+	return <CreateScenarioPage />;
 }

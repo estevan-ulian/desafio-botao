@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/shared/utils/cn";
 import { Slot } from "@radix-ui/react-slot";
+import { Typography } from "./typography";
 
 const Card = React.forwardRef<
 	HTMLDivElement,
@@ -52,9 +53,11 @@ const CardDescription = React.forwardRef<
 	HTMLParagraphElement,
 	React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-	<p
+	<Typography
+		variant="smallText"
+		weight="normal"
 		ref={ref}
-		className={cn("text-sm text-muted-foreground", className)}
+		className={cn("text-muted-foreground", className)}
 		{...props}
 	/>
 ));

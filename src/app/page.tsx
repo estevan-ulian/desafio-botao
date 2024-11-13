@@ -1,5 +1,5 @@
-import { CreateScenePage } from "@/features/scene/pages/create-scene-page";
+import { Homepage } from "@/features/homepage";
 
-export default function Home() {
-	return <CreateScenePage />;
+export default function Page() {
+	return <Homepage />;
 }

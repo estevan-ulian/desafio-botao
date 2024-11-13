@@ -8,22 +8,20 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Question {
-  id               String   @id @unique @default(uuid())
-  text             String
-  confirmationText String   @map("confirmation_text")
-  createdAt        DateTime @default(now()) @map("created_at")
-  answers          Answer[]
-
-  @@map("questions")
+model Scenario {
+  id                  String   @id @unique @default(uuid())
+  question            String
+  confirmationType    String   @map("confirmation_type")
+  confirmationContent String?  @map("confirmation_content")
+  createdAt           DateTime @default(now()) @map("created_at")
+  answers             Answer[]
 }
 
 model Answer {
   id             String   @id @unique @default(uuid())
   text           String
-  questionId     String   @map("question_id")
   isNotClickable Boolean  @map("is_not_clickable")
-  question       Question @relation(fields: [questionId], references: [id])
-
-  @@map("answers")
+  scenarioId     String   @map("scenario_id")
+  scenario       Scenario @relation(fields: [scenarioId], references: [id])
+  createdAt      DateTime @default(now()) @map("created_at")
 }

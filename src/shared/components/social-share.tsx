@@ -7,7 +7,10 @@ import { Button } from "@/shared/components/ui/button";
 import { Typography } from "@/shared/components/ui/typography";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
-export function useSocialShare(url = "", title = "") {
+export function useSocialShare(
+	url = "",
+	title = "Te desafio a responder essa pergunta",
+) {
 	const [copied, setCopied] = useState(false);
 
 	const shareOnX = () => {
@@ -48,7 +51,7 @@ export function useSocialShare(url = "", title = "") {
 
 export function SocialSharePopover({
 	title = "Te desafio a responder essa pergunta",
-	url = "",
+	url = window.location.href,
 }) {
 	const { copied, copyLink, shareOnFacebook, shareOnWhatsApp, shareOnX } =
 		useSocialShare(url, title);
@@ -104,7 +107,7 @@ export function SocialSharePopover({
 }
 
 export function SocialShare({
-	url = "",
+	url = window.location.href,
 	title = "Te desafio a responder essa pergunta!",
 }) {
 	const { copied, copyLink, shareOnFacebook, shareOnWhatsApp, shareOnX } =

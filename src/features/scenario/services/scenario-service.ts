@@ -8,7 +8,7 @@ import {
 
 export interface IScenarioService {
     create: (
-        scenario: ICreateScenarioBody
+        scenario: ICreateScenarioBody,
     ) => Promise<ICreateScenarioActionResponse>;
     findOne: (id: string) => Promise<IGetScenarioServiceResponse>;
     findLastTen: () => Promise<IGetLastTenScenariosServiceResponse>;
@@ -17,7 +17,7 @@ export interface IScenarioService {
 export function scenarioService(api: PrismaClient): IScenarioService {
     return {
         create: async (
-            scenario: ICreateScenarioBody
+            scenario: ICreateScenarioBody,
         ): Promise<ICreateScenarioActionResponse> => {
             const { data } = scenario;
 

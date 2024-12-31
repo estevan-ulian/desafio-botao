@@ -31,7 +31,7 @@ export function ScenarioCard({ scenario }: IScenarioCardProps) {
                                 year: "numeric",
                                 month: "short",
                                 day: "numeric",
-                            }
+                            },
                         )}
                     </span>
                 </>

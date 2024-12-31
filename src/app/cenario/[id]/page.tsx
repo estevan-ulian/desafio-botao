@@ -13,7 +13,7 @@ export default async function Page({ params }: IPageProps) {
 
     if (!scenario.data)
         throw new Error(
-            scenario.error?.message || "Ocorreu um erro ao carregar cenário :("
+            scenario.error?.message || "Ocorreu um erro ao carregar cenário :(",
         );
 
     return <ViewScenarioPage scenario={scenario.data} />;

@@ -8,7 +8,7 @@ import { ICreateScenarioActionResponse } from "../types/scenario-actions-type";
 const service = scenarioService(prisma);
 
 export async function createScenarioAction(
-	data: ICreateScenarioBody,
+    data: ICreateScenarioBody,
 ): Promise<ICreateScenarioActionResponse> {
-	return await service.create(structuredClone(data));
+    return await service.create(structuredClone(data));
 }

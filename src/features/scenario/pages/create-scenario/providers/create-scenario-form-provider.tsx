@@ -5,67 +5,67 @@ import { FormStepThreeData } from "../components/step-three/hooks/use-form-step-
 import { StepItem, Stepper } from "@/shared/components/ui/stepper";
 
 export interface ICreateScenarioFormData {
-	question: FormStepOneData["data"]["question"];
-	answers: FormStepTwoData["data"]["answers"];
-	confirmation: {
-		confirmationType: FormStepThreeData["data"]["confirmation"]["confirmationType"];
-		confirmationContent: FormStepThreeData["data"]["confirmation"]["confirmationContent"];
-	};
+    question: FormStepOneData["data"]["question"];
+    answers: FormStepTwoData["data"]["answers"];
+    confirmation: {
+        confirmationType: FormStepThreeData["data"]["confirmation"]["confirmationType"];
+        confirmationContent: FormStepThreeData["data"]["confirmation"]["confirmationContent"];
+    };
 }
 
 interface ICreateScenarioFormContextProps {
-	formData: ICreateScenarioFormData;
-	setFormData: React.Dispatch<React.SetStateAction<ICreateScenarioFormData>>;
-	scenarioId: string | undefined;
-	setScenarioId: React.Dispatch<React.SetStateAction<string | undefined>>;
+    formData: ICreateScenarioFormData;
+    setFormData: React.Dispatch<React.SetStateAction<ICreateScenarioFormData>>;
+    scenarioId: string | undefined;
+    setScenarioId: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const formDataInitialState: ICreateScenarioFormData = {
-	question: "",
-	answers: {
-		firstAnswer: "",
-		secondAnswer: "",
-		isNotClickable: "",
-	},
-	confirmation: {
-		confirmationType: "",
-		confirmationContent: "",
-	},
+    question: "",
+    answers: {
+        firstAnswer: "",
+        secondAnswer: "",
+        isNotClickable: "",
+    },
+    confirmation: {
+        confirmationType: "",
+        confirmationContent: "",
+    },
 };
 
 export const CreateScenarioFormContext =
-	React.createContext<ICreateScenarioFormContextProps>({
-		formData: formDataInitialState,
-		setFormData: () => {},
-		scenarioId: undefined,
-		setScenarioId: () => {},
-	});
+    React.createContext<ICreateScenarioFormContextProps>({
+        formData: formDataInitialState,
+        setFormData: () => {},
+        scenarioId: undefined,
+        setScenarioId: () => {},
+    });
 
 interface PropsWithSteps {
-	steps: StepItem[];
+    steps: StepItem[];
 }
 export function CreateScenarioFormProvider({
-	steps,
-	children,
+    steps,
+    children,
 }: React.PropsWithChildren<PropsWithSteps>) {
-	const [formData, setFormData] =
-		React.useState<ICreateScenarioFormData>(formDataInitialState);
-	const [scenarioId, setScenarioId] = React.useState<string | undefined>(
-		undefined,
-	);
+    const [formData, setFormData] =
+        React.useState<ICreateScenarioFormData>(formDataInitialState);
+    const [scenarioId, setScenarioId] = React.useState<string | undefined>(
+        undefined,
+    );
 
-	const store: ICreateScenarioFormContextProps = {
-		formData,
-		setFormData,
-		scenarioId,
-		setScenarioId,
-	};
+    const store: ICreateScenarioFormContextProps = {
+        formData,
+        setFormData,
+        scenarioId,
+        setScenarioId,
+    };
 
-	return (
-		<CreateScenarioFormContext.Provider value={store}>
-			<Stepper initialStep={0} steps={steps}>
-				{children}
-			</Stepper>
-		</CreateScenarioFormContext.Provider>
-	);
+    return (
+        <CreateScenarioFormContext.Provider value={store}>
+            <Stepper initialStep={0} steps={steps}>
+                {children}
+            </Stepper>
+        </CreateScenarioFormContext.Provider>
+    );
 }

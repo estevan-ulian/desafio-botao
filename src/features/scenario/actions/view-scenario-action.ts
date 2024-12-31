@@ -7,7 +7,7 @@ import { IGetScenarioServiceResponse } from "../types/scenario-actions-type";
 const service = scenarioService(prisma);
 
 export async function viewScenarioAction(
-	id: string,
+    id: string,
 ): Promise<IGetScenarioServiceResponse> {
-	return await service.findOne(structuredClone(id));
+    return await service.findOne(structuredClone(id));
 }

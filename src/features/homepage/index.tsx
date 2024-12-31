@@ -6,6 +6,7 @@ import demoGifDesktop from "@/shared/assets/images/demo_desktop.gif";
 import demoGifMobile from "@/shared/assets/images/demo_mobile.gif";
 import { IScenarioModel } from "../scenario/types/scenario-type";
 import { ScenarioCard } from "./components/scenario-card";
+import { Header } from "@/shared/components/header";
 
 export function Homepage({
     lastTenScenarios,
@@ -14,13 +15,14 @@ export function Homepage({
 }) {
     return (
         <>
+            <Header />
             <main className="flex-grow flex flex-col">
                 <section className="w-full py-16 min-h-[65svh] bg-primary flex flex-col justify-center">
                     <div className="max-w-screen-xl mx-auto w-full px-4 flex flex-col gap-10 md:flex-row items-center justify-center">
                         <div className="w-full md:max-w-[50%]">
                             <Typography
                                 variant="h2"
-                                as="h1"
+                                as="h2"
                                 className="text-background mb-2 dark:text-foreground"
                             >
                                 Desafio do Botão
@@ -81,7 +83,10 @@ export function Homepage({
                         </div>
                     </div>
                 </section>
-                <section className="w-full py-16 pb-8 bg-secondary">
+                <section
+                    className="w-full py-16 pb-8 bg-secondary"
+                    id="como-funciona"
+                >
                     <div className="max-w-screen-xl mx-auto w-full px-4">
                         <Typography
                             variant="h3"

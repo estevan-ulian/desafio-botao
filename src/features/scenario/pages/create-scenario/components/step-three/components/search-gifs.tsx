@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import { Gif } from "./gif";
 import { useFormStepThree } from "../hooks/use-form-step-three";
+import poweredByGiphy from "@/shared/assets/images/powered_by_giphy.gif";
 
 export function SearchGifs(props: ReturnType<typeof useFormStepThree>) {
     const {
@@ -81,6 +82,21 @@ export function SearchGifs(props: ReturnType<typeof useFormStepThree>) {
                     </Button>
                 </div>
             )}
+            <a href="https://giphy.com/" target="_blank" rel="noreferrer">
+                <picture>
+                    <source
+                        srcSet={poweredByGiphy.src}
+                        width={200}
+                        height={42}
+                    />
+                    <img
+                        src={poweredByGiphy.src}
+                        alt="Demonstração do jogo Desafio do Botão"
+                        className="w-full max-w-[200px] ml-auto mt-2 rounded-lg"
+                        loading="eager"
+                    />
+                </picture>
+            </a>
         </div>
     );
 }

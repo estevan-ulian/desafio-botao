@@ -5,10 +5,11 @@ import {
     IGetLastTenScenariosServiceResponse,
     IGetScenarioServiceResponse,
 } from "../types/scenario-actions-type";
+import { revalidatePath, unstable_cache } from "next/cache";
 
 export interface IScenarioService {
     create: (
-        scenario: ICreateScenarioBody,
+        scenario: ICreateScenarioBody
     ) => Promise<ICreateScenarioActionResponse>;
     findOne: (id: string) => Promise<IGetScenarioServiceResponse>;
     findLastTen: () => Promise<IGetLastTenScenariosServiceResponse>;
@@ -17,7 +18,7 @@ export interface IScenarioService {
 export function scenarioService(api: PrismaClient): IScenarioService {
     return {
         create: async (
-            scenario: ICreateScenarioBody,
+            scenario: ICreateScenarioBody
         ): Promise<ICreateScenarioActionResponse> => {
             const { data } = scenario;
 
@@ -57,18 +58,28 @@ export function scenarioService(api: PrismaClient): IScenarioService {
                 };
             }
 
-            const createScenario = await api.scenario.create({
-                data: {
-                    question: data.question,
-                    confirmationType: data.confirmationType,
-                    confirmationContent: data.confirmationContent,
-                    answers: {
-                        create: data.answers,
-                    },
+            const createScenario = unstable_cache(
+                async () => {
+                    return await api.scenario.create({
+                        data: {
+                            question: data.question,
+                            confirmationType: data.confirmationType,
+                            confirmationContent: data.confirmationContent,
+                            answers: {
+                                create: data.answers,
+                            },
+                        },
+                    });
                 },
-            });
+                ["scenario"],
+                {
+                    tags: ["scenario"],
+                }
+            );
 
-            return { data: { id: createScenario.id }, error: null };
+            const scenarioCreated = await createScenario();
+
+            return { data: { id: scenarioCreated.id }, error: null };
         },
 
         findOne: async (id: string): Promise<IGetScenarioServiceResponse> => {

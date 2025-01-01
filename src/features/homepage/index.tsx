@@ -4,15 +4,10 @@ import { Button } from "@/shared/components/ui/button";
 import { Typography } from "@/shared/components/ui/typography";
 import demoGifDesktop from "@/shared/assets/images/demo_desktop.gif";
 import demoGifMobile from "@/shared/assets/images/demo_mobile.gif";
-import { IScenarioModel } from "../scenario/types/scenario-type";
-import { ScenarioCard } from "./components/scenario-card";
 import { Header } from "@/shared/components/header";
+import { LastTenScenarios } from "./components/last-ten-scenarios";
 
-export function Homepage({
-    lastTenScenarios,
-}: {
-    lastTenScenarios: IScenarioModel[];
-}) {
+export function Homepage() {
     return (
         <>
             <Header />
@@ -44,12 +39,12 @@ export function Homepage({
                                     asChild
                                 >
                                     <Link href="/#cenarios-recentes">
-                                        Confira os cenários mais recentes
+                                        Cenários recentes
                                     </Link>
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    className="w-auto bg-transparent text-background dark:text-foreground dark:border-foreground dark:hover:bg-foreground dark:hover:text-background"
+                                    className="w-full bg-transparent text-background dark:text-foreground dark:border-foreground dark:hover:bg-foreground dark:hover:text-background"
                                     size="lg"
                                     asChild
                                 >
@@ -191,22 +186,7 @@ export function Homepage({
                             Cenários criados recentemente
                         </Typography>
 
-                        <div className="flex flex-row flex-wrap items-stretch justify-center gap-4 w-full">
-                            {lastTenScenarios.length > 0 ? (
-                                lastTenScenarios.map((scenario) => (
-                                    <ScenarioCard
-                                        key={scenario.id}
-                                        scenario={scenario}
-                                    />
-                                ))
-                            ) : (
-                                <div className="flex items-center justify-center">
-                                    <Typography variant="p">
-                                        Nenhum cenário criado ainda... :(
-                                    </Typography>
-                                </div>
-                            )}
-                        </div>
+                        <LastTenScenarios />
                     </div>
                 </section>
                 <section className="w-full py-16">

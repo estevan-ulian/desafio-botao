@@ -9,28 +9,32 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 export function useSocialShare(
     url = "",
-    title = "Te desafio a responder essa pergunta",
+    title = "Te desafio a responder essa pergunta"
 ) {
     const [copied, setCopied] = useState(false);
 
     const shareOnX = () => {
         window.open(
-            `https://x.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-            "_blank",
+            `https://x.com/intent/tweet?url=${encodeURIComponent(
+                url
+            )}&text=${encodeURIComponent(title)}`,
+            "_blank"
         );
     };
 
     const shareOnFacebook = () => {
         window.open(
-            `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-            "_blank",
+            `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                url
+            )}`,
+            "_blank"
         );
     };
 
     const shareOnWhatsApp = () => {
         window.open(
             `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`,
-            "_blank",
+            "_blank"
         );
     };
 
@@ -122,7 +126,7 @@ export function SocialShare({
         useSocialShare(url, title);
     return (
         <Card className="w-auto p-0">
-            <CardContent className="p-3 flex flex-wrap justify-center items-center gap-5">
+            <CardContent className="p-1 flex flex-wrap justify-center items-center gap-5">
                 <Typography
                     variant="h5"
                     as="h3"

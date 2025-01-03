@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FormStepOneData } from "../components/step-one/hooks/use-form-step-one";
 import { FormStepTwoData } from "../components/step-two/hooks/use-form-step-two";
@@ -51,7 +52,7 @@ export function CreateScenarioFormProvider({
     const [formData, setFormData] =
         React.useState<ICreateScenarioFormData>(formDataInitialState);
     const [scenarioId, setScenarioId] = React.useState<string | undefined>(
-        undefined,
+        undefined
     );
 
     const store: ICreateScenarioFormContextProps = {

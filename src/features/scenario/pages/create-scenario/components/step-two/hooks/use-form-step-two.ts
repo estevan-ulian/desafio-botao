@@ -5,19 +5,29 @@ import { useCreateScenarioFormStore } from "../../../hooks/use-create-scenario-f
 
 const formStepTwoSchema = z.object({
     data: z.object({
-        answers: z.object({
-            firstAnswer: z
-                .string()
-                .min(3, "A resposta deve ter no mínimo 3 caracteres"),
-            secondAnswer: z
-                .string()
-                .min(3, "A resposta deve ter no mínimo 3 caracteres"),
-            isNotClickable: z
-                .enum(["", "firstAnswer", "secondAnswer"])
-                .refine((val) => val !== "", {
-                    message: "Selecione a resposta que NÃO poderá ser clicada.",
+        answers: z
+            .object({
+                firstAnswer: z
+                    .string()
+                    .min(3, "A resposta deve ter no mínimo 3 caracteres"),
+                secondAnswer: z
+                    .string()
+                    .min(3, "A resposta deve ter no mínimo 3 caracteres"),
+                isNotClickable: z.enum(["", "firstAnswer", "secondAnswer"], {
+                    required_error:
+                        "Selecione a resposta que NÃO será clicável",
                 }),
-        }),
+            })
+            .superRefine((arg, ctx) => {
+                const { isNotClickable } = arg;
+                if (!isNotClickable) {
+                    return ctx.addIssue({
+                        code: z.ZodIssueCode.custom,
+                        message: "Selecione a resposta que NÃO será clicável",
+                        path: ["isNotClickable"],
+                    });
+                }
+            }),
     }),
 });
 
@@ -33,6 +43,7 @@ export function useFormStepTwo() {
         },
         resolver: zodResolver(formStepTwoSchema),
     });
+    console.log(form.formState.errors);
     const onSubmit = form.handleSubmit(({ data }: FormStepTwoData) => {
         next(data);
     });

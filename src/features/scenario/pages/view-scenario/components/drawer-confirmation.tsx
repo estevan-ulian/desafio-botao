@@ -45,7 +45,7 @@ export function DrawerConfirmation({
                             />
                         </DrawerDescription>
                     </DrawerHeader>
-                    <DrawerFooter className="gap-5 md:pb-32">
+                    <DrawerFooter className="gap-5 md:pb-8">
                         <SocialShare />
                         <div className="flex flex-row gap-4 md:gap-10">
                             <Button asChild className="w-full">

@@ -73,7 +73,7 @@ export function FormStepTwo(methods: ReturnType<typeof useFormStepTwo>) {
                                         <ButtonGroupItem
                                             label={
                                                 form.watch(
-                                                    "data.answers.firstAnswer",
+                                                    "data.answers.firstAnswer"
                                                 ) || "Resposta 1"
                                             }
                                             value="firstAnswer"
@@ -86,7 +86,7 @@ export function FormStepTwo(methods: ReturnType<typeof useFormStepTwo>) {
                                         <ButtonGroupItem
                                             label={
                                                 form.watch(
-                                                    "data.answers.secondAnswer",
+                                                    "data.answers.secondAnswer"
                                                 ) || "Resposta 2"
                                             }
                                             description={

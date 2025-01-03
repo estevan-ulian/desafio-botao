@@ -7,7 +7,8 @@ const formStepOneSchema = z.object({
     data: z.object({
         question: z
             .string()
-            .min(10, "A pergunta deve ter no mínimo 10 caracteres"),
+            .min(10, "A pergunta deve ter no mínimo 10 caracteres")
+            .max(50, "A pergunta deve ter no máximo 50 caracteres"),
     }),
 });
 

@@ -12,10 +12,11 @@ const formStepTwoSchema = z.object({
             secondAnswer: z
                 .string()
                 .min(3, "A resposta deve ter no mínimo 3 caracteres"),
-            isNotClickable: z.enum(["", "firstAnswer", "secondAnswer"], {
-                required_error:
-                    "Selecione a resposta que não poderá ser clicada.",
-            }),
+            isNotClickable: z
+                .enum(["", "firstAnswer", "secondAnswer"])
+                .refine((val) => val !== "", {
+                    message: "Selecione a resposta que NÃO poderá ser clicada.",
+                }),
         }),
     }),
 });

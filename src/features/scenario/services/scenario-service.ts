@@ -5,7 +5,7 @@ import {
     IGetLastTenScenariosServiceResponse,
     IGetScenarioServiceResponse,
 } from "../types/scenario-actions-type";
-import { revalidatePath, unstable_cache } from "next/cache";
+import { unstable_cache } from "next/cache";
 
 export interface IScenarioService {
     create: (
@@ -54,6 +54,19 @@ export function scenarioService(api: PrismaClient): IScenarioService {
                     data: null,
                     error: {
                         message: "As perguntas devem ter 2 respostas.",
+                    },
+                };
+            }
+
+            const clickableAnswers = data.answers.filter(
+                (answer) => !answer.isNotClickable
+            );
+
+            if (clickableAnswers.length !== 1) {
+                return {
+                    data: null,
+                    error: {
+                        message: "Apenas uma resposta pode ser clicável.",
                     },
                 };
             }

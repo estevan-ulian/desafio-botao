@@ -1,5 +1,15 @@
-import { CreateScenarioPage } from "@/features/scenario/pages/create-scenario";
+import dynamic from "next/dynamic";
+
+const CreateScenarioPageNoSSR = dynamic(
+    () =>
+        import("@/features/scenario/pages/create-scenario").then(
+            (mod) => mod.CreateScenarioPage
+        ),
+    {
+        ssr: false,
+    }
+);
 
 export default function Page() {
-    return <CreateScenarioPage />;
+    return <CreateScenarioPageNoSSR />;
 }

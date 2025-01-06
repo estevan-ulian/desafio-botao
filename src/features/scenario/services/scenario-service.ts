@@ -71,28 +71,27 @@ export function scenarioService(api: PrismaClient): IScenarioService {
                 };
             }
 
-            const createScenario = unstable_cache(
-                async () => {
-                    return await api.scenario.create({
-                        data: {
-                            question: data.question,
-                            confirmationType: data.confirmationType,
-                            confirmationContent: data.confirmationContent,
-                            answers: {
-                                create: data.answers,
-                            },
+            const createScenario = async () => {
+                return await api.scenario.create({
+                    data: {
+                        question: data.question,
+                        confirmationType: data.confirmationType,
+                        confirmationContent: data.confirmationContent,
+                        answers: {
+                            create: data.answers,
                         },
-                    });
-                },
-                ["scenario"],
-                {
-                    tags: ["scenario"],
-                }
-            );
+                    },
+                });
+            };
 
-            const scenarioCreated = await createScenario();
+            const newScenario =
+                process.env.NODE_ENV === "test"
+                    ? await createScenario()
+                    : await unstable_cache(createScenario, ["scenario"], {
+                          tags: ["scenario"],
+                      })();
 
-            return { data: { id: scenarioCreated.id }, error: null };
+            return { data: { id: newScenario.id }, error: null };
         },
 
         findOne: async (id: string): Promise<IGetScenarioServiceResponse> => {

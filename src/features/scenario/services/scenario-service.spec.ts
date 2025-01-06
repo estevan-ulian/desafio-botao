@@ -1,28 +1,18 @@
 import { describe, it, expect, vi } from "vitest";
-import { PrismaClient } from "@prisma/client";
 import { scenarioService } from "./scenario-service";
 import { ICreateScenarioBody } from "../types/scenario-type";
+import prismaMock from "../../../../test/mock/prisma";
 
-// Mock the unstable_cache function
-vi.mock("next/cache", () => ({
-    unstable_cache: vi.fn().mockImplementation(async (fn) => {
-        return await fn();
-    }),
-}));
-
-const mockPrisma = {
-    scenario: {
-        create: vi.fn(),
-        findUnique: vi.fn(),
-        findMany: vi.fn(),
-    },
-} as unknown as PrismaClient;
-
-const service = scenarioService(mockPrisma);
+const service = scenarioService(prismaMock);
 
 describe("Scenario Service", () => {
     describe("create", () => {
         it("should create a scenario successfully", async () => {
+            vi.mock("next/cache", () => ({
+                unstable_cache: vi.fn().mockImplementation(async (fn) => {
+                    return await fn();
+                }),
+            }));
             const scenario: ICreateScenarioBody = {
                 data: {
                     question: "Sample question?",
@@ -35,7 +25,13 @@ describe("Scenario Service", () => {
                 },
             };
 
-            mockPrisma.scenario.create.mockResolvedValue({ id: "1" });
+            prismaMock.scenario.create.mockResolvedValue({
+                id: "1",
+                question: "Sample question?",
+                confirmationType: "type",
+                confirmationContent: "content",
+                createdAt: new Date(),
+            });
 
             const response = await service.create(scenario);
 
@@ -165,7 +161,7 @@ describe("Scenario Service", () => {
                 ],
             };
 
-            mockPrisma.scenario.findUnique.mockResolvedValue(scenario);
+            prismaMock.scenario.findUnique.mockResolvedValue(scenario);
 
             const response = await service.findOne("1");
 
@@ -174,7 +170,7 @@ describe("Scenario Service", () => {
         });
 
         it("should return error if scenario not found", async () => {
-            mockPrisma.scenario.findUnique.mockResolvedValue(null);
+            prismaMock.scenario.findUnique.mockResolvedValue(null);
 
             const response = await service.findOne("1");
 
@@ -196,7 +192,7 @@ describe("Scenario Service", () => {
                 answers: [],
             }));
 
-            mockPrisma.scenario.findMany.mockResolvedValue(scenarios);
+            prismaMock.scenario.findMany.mockResolvedValue(scenarios);
 
             const response = await service.findLastTen();
 
@@ -205,7 +201,7 @@ describe("Scenario Service", () => {
         });
 
         it("should return error if no scenarios found", async () => {
-            mockPrisma.scenario.findMany.mockResolvedValue([]);
+            prismaMock.scenario.findMany.mockResolvedValue([]);
 
             const response = await service.findLastTen();
 
